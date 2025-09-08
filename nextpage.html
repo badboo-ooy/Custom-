@@ -1,0 +1,158 @@
+<head>  
+  <meta charset="UTF-8">  
+  <title>Birthday Wish</title>  
+  <style>  
+    body {  
+      background-color: #D8B2D8;  
+      margin: 0;  
+      font-family: Arial, sans-serif;  
+    }  .emoji {  
+  position: absolute;  
+  width: 60%;  
+  bottom: 57.50%;  
+  left: -8%;  
+}  
+
+.chatbox {  
+  width: 760px;  
+  height: 500px;  
+  padding: 20px;  
+  border-radius: 5px;  
+  position: relative;  
+  margin: 680px auto;  
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.2);  
+}  
+
+.chatbox {  
+  background: #50c878;  
+}  
+
+.chat-box {  
+  background: #2d8cff;  
+  border: 2px solid black;  
+  width: 760px;  
+  height: 500px;  
+  padding: 20px;  
+  left: -40px;  
+  border-radius: 5px;  
+  position: relative;  
+  margin: -40px auto;  
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.2);  
+}  
+
+.textbox {  
+  background: #808080;
+  border: 2px solid black;
+  width: 740px;
+  height: 490px;
+  padding: 5px;
+  border-radius: 5px;
+  position: relative;
+  margin: 0px auto;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+
+  display: flex;
+  justify-content: center;   /* center horizontally */
+  align-items: center;       /* center vertically */
+  flex-direction: column;    /* stack message and button */
+}  
+ .typewriter-container {
+      max-width: 600px;
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-size: 24px;
+      line-height: 1.5;
+      text-align: center;
+      justify-content: center;
+      align-items: center;     
+    }
+
+    .text {
+      display: inline;
+      font-size: 48px;
+      font-weight: bold;
+    }
+
+    .caret {
+      display: inline-block;
+      width: 4px;
+      height: 2em;
+      background-color: black;
+      animation: blink 0.7s step-end infinite;
+      vertical-align: bottom;
+      margin-left: 2px;
+    }
+
+    @keyframes blink {
+      50% { background-color: transparent; }
+    }
+
+    #continueBtn {
+      display: none;
+      margin-top: -20px;
+      padding: 10px 20px;
+      font-size: 36px;
+      font-family: 'Courier New', monospace;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #continueBtn:hover {
+      background-color: #45a049;
+    }
+    .bottom {
+        text-align: center;
+        margin-top: -20px;
+        opacity: 0.5;
+        }
+  </style> 
+  </head>  
+<body>
+    
+    <img src="https://i.ibb.co/CKxSy7cJ/1000323035-removebg-preview.png" class="emoji"> 
+    
+   <div class="chatbox">  
+    <div class="chat-box">  
+      <div class="textbox">  
+       <div class="typewriter-container">
+          <span class="text" id="typewriter"></span><span class="caret" id="caret"></span>
+       </div>
+       <button id="continueBtn" onclick="window.location.href='page.html'">Click Here</button>
+      </div>
+     </div>
+    </div>
+    <h2 class="bottom"> Made with &#x2763;&#xFE0F; for special person.
+<script>
+  // Get today’s date
+  const today = new Date();
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  const formattedDate = today.toLocaleDateString('en-US', options);
+
+  // Message to display
+  const message = `Thank you! for set the date.Today is ${formattedDate}.Ohhhhh Today is a Special Day Because, Its your Birthday.`;
+
+  const textElement = document.getElementById('typewriter');
+  const caretElement = document.getElementById('caret');
+  const button = document.getElementById('continueBtn');
+
+  let i = 0;
+
+  function typeWriter() {
+    if (i < message.length) {
+      textElement.textContent += message.charAt(i);
+      i++;
+      setTimeout(typeWriter, 89);
+    } else {
+      // After typing ends, hide the caret and show button
+      caretElement.style.display = 'none';
+      button.style.display = 'inline-block';
+    }
+  }
+
+  typeWriter();
+</script>
+</body>           
+</html>  

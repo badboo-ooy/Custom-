@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Light/Dark Theme Switch</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.5s, color 0.5s;
+      font-family: Arial, sans-serif;
+      background-color: #D8B2D8;
+      color: black;
+    }
+
+    .switch-container {
+      position: fixed;
+      top: 1670px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 150px;
+      height: 80px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: 0.4s;
+      border-radius: 34px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 70px;
+      width: 70px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: 0.4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: #2196F3;
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(75px);
+    }
+
+    .dark-mode {
+      background-color: #111;
+      color: white;
+    }
+
+    .popup-image {
+      position: fixed;
+      bottom: 380px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: none;
+      width: 950px;        /* ✅ Set your desired width */
+      height: auto;        /* ✅ Maintains aspect ratio */
+      border: 4px solid white;
+      border-radius: 16px;
+      box-shadow: 0 0 20px white;
+      animation: fadeIn 0.8s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateX(-50%) scale(0.9); }
+      to { opacity: 1; transform: translateX(-50%) scale(1); }
+    }
+
+    .calendar {
+      display: none;
+      position: fixed;
+      bottom: 1380px;
+      left: 70%;
+      transform: translateX(-50%);
+      background: #222;
+      color: white;
+      padding: 10px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 0 15px white;
+    }
+
+    .calendar table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .calendar th, .calendar td {
+      padding: 8px;
+      border: 1px solid #555;
+    }
+
+    .calendar .today {
+      background: #444;
+      font-weight: bold;
+      color: #FFD700;
+    }
+
+    .bottom {
+      text-align: center;
+      opacity: 0.5;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="switch-container">
+    <label class="switch">
+      <input type="checkbox" id="themeSwitch">
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <h1 style="text-align:center; margin-top: 1760px; font-size: 50px;">Click on the slider</h1>
+
+  <img src="https://i.ibb.co/hFWdbZkc/20250728-230603.png" alt="Light Off Image" id="popupImage" class="popup-image">
+
+  <div id="calendar" class="calendar"></div>
+
+  <h2 class="bottom"> Made with &#x2763;&#xFE0F; for special person.</h2>
+
+  <script>
+    const switchToggle = document.getElementById('themeSwitch');
+    const body = document.body;
+    const popupImage = document.getElementById('popupImage');
+    const calendar = document.getElementById('calendar');
+
+    function generateCalendar() {
+      const now = new Date();
+      const year = now.getFullYear();
+      const month = now.getMonth();
+      const today = now.getDate();
+      const monthName = now.toLocaleString('default', { month: 'long' });
+
+      const firstDay = new Date(year, month, 1).getDay();
+      const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+      let table = `<h3>${monthName} ${year}</h3><table><tr>`;
+      const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+      for (let d of days) table += `<th>${d}</th>`;
+      table += '</tr><tr>';
+
+      for (let i = 0; i < firstDay; i++) {
+        table += '<td></td>';
+      }
+
+      for (let day = 1; day <= daysInMonth; day++) {
+        const isToday = day === today ? 'today' : '';
+        const emoji = day === today ? ' 🎂' : '';
+        table += `<td class="${isToday}">${day}${emoji}</td>`;
+        if ((firstDay + day) % 7 === 0) table += '</tr><tr>';
+      }
+
+      table += '</tr></table>';
+      calendar.innerHTML = table;
+    }
+
+    switchToggle.addEventListener('change', () => {
+      if (switchToggle.checked) {
+        body.classList.add('dark-mode');
+        popupImage.style.display = 'block';
+        generateCalendar();
+        calendar.style.display = 'block';
+      } else {
+        body.classList.remove('dark-mode');
+        popupImage.style.display = 'none';
+        calendar.style.display = 'none';
+      }
+    });
+  </script>
+
+</body>
+</html>

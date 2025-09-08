@@ -1,0 +1,183 @@
+ <head>  
+  <meta charset="UTF-8">  
+  <title>Birthday Wish</title>  
+  <style>  
+    body {  
+      background-color: #D8B2D8;  
+      margin: 0;  
+      font-family: Arial, sans-serif;  
+    }  .emoji {  
+  position: absolute;  
+  width: 60%;  
+  bottom: 40.50%;  
+  left: -10%;  
+}  
+
+.chatbox {  
+  width: 760px;  
+  height: 500px;  
+  padding: 20px;  
+  border-radius: 5px;  
+  position: relative;  
+  margin: 680px auto;  
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.2);  
+}  
+
+.chatbox {  
+  background: #50c878;  
+}  
+
+.chat-box {  
+  background: #2d8cff;  
+  border: 2px solid black;  
+  width: 760px;  
+  height: 500px;  
+  padding: 20px;  
+  left: -40px;  
+  border-radius: 5px;  
+  position: relative;  
+  margin: -40px auto;  
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.2);  
+}  
+
+.textbox {  
+  background: #808080;  
+  border: 2px solid black;  
+  width: 740px;  
+  height: 500px;  
+  left: 40px:  
+  padding: 5px;  
+  border-radius: 5px;  
+  position: relative;  
+  margin: 0px auto;  
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.2);  
+}  
+
+.sign {  
+  text-align: center;  
+}  
+
+.sign img {  
+  width: 200px;  
+  transform: rotate(18deg);  
+}  
+
+.typewriter {  
+   position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+}  
+
+.typewriter h1 {  
+  font-size: 50px;  
+  overflow: hidden;  
+  border-right: .15em solid black;  
+  white-space: nowrap;  
+  margin: 0 auto;  
+  letter-spacing: .1em;  
+  animation: typing 3s steps(30, end), blink-caret 0.75s step-end infinite;  
+}  
+
+@keyframes typing {  
+  from { width: 0; }  
+  to { width: 100%; }  
+}  
+
+@keyframes blink-caret {  
+  from, to { border-color: transparent } 
+  50% { border-color: black; } 
+}  
+
+.form-area {  
+  text-align: center;  
+  margin-top: 100px;  
+}  
+
+input[type="date"] {  
+  font-size: 40px;  
+  padding: 10px;  
+  border-radius: 10px;  
+  border: 1px solid #ccc;  
+}  
+
+button {  
+  font-size: 40px;  
+  padding: 10px 20px;  
+  border-radius: 5px;  
+  background-color: #4CAF50;  
+  color: white;  
+  border: none;  
+  margin-left: 10px;  
+  cursor: pointer;  
+}  
+
+button:hover {  
+  background-color: #45a049;  
+}  
+
+#errorText {  
+  color: black;  
+  text-align: center;  
+  margin-top: 20px;  
+  font-size: 40px;  
+}
+  .deco {  
+  position: absolute;  
+  width: 60%;  
+  bottom: 60%;  
+  left: -11%;  
+} 
+ .bottom {
+        text-align: center;
+        margin-top: -20px;
+        opacity: 0.5;
+        }
+  </style>  
+</head>  
+<body>
+    
+    <img src="https://i.ibb.co/Cg3B2vW/1000320859-removebg-preview.png" class="emoji"> 
+    
+       <div class="chatbox">  
+    <div class="chat-box">  
+      <div class="textbox">  
+        <div class="sign">  
+          <img src="https://i.ibb.co/Y470v6Wn/1000321675-removebg-preview.png">  
+        </div>  
+        <div class="typewriter">  
+          <h1>Please! Set the Date.</h1>  
+        </div>  <div class="form-area">  
+      <form id="dateForm" onsubmit="return checkDate(event)">  
+        <label for="userDate"></label><br><br>  
+        <input type="date" id="userDate" required> 
+        <button type="submit">Submit</button>  
+      </form>  
+      <div id="errorText" style="display: none;">Please select correct date !</div>  
+    </div>  
+  </div>  
+</div>
+</div>  
+      <h2 class="bottom"> Made with &#x2763;&#xFE0F; for special person.
+      <img src="https://i.ibb.co/6Rf5StKt/1000322203-removebg-preview-1.png" class="deco">
+    
+  <script>  
+    function checkDate(event) {  
+      event.preventDefault();  
+      const inputDate = document.getElementById('userDate').value;  
+      const errorBox = document.getElementById('errorText');  
+  
+      const today = new Date();  
+      const yyyy = today.getFullYear();  
+      const mm = String(today.getMonth() + 1).padStart(2, '0');  
+      const dd = String(today.getDate()).padStart(2, '0');  
+      const todayStr = `${yyyy}-${mm}-${dd}`;  
+  
+      if (inputDate === todayStr) {  
+        window.location.href = "nextpage.html";  
+      } else {  
+        errorBox.style.display = "block";  
+      }  
+    }  
+  </script>  </body>  
+</html>  
